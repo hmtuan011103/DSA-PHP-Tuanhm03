@@ -27,9 +27,9 @@ class ClimbingStairs {
            return $fn2;
        }
 
-       $fn3 = $fn1 + $fn2;
+       $fn3 = '';
 
-       for ($i = 3; $i < $n; $i++) {
+       for ($i = 3; $i <= $n; $i++) {
            $fn3 = $fn1 + $fn2;
            $fn1 = $fn2;
            $fn2 = $fn3;
@@ -41,5 +41,5 @@ class ClimbingStairs {
 }
 
 $climbingStairs = new ClimbingStairs();
-$fn = $climbingStairs->climbingStarts(6);
+$fn = $climbingStairs->climbingStarts(3);
 echo $fn;

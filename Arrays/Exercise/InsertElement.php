@@ -11,7 +11,6 @@ class InsertElement {
         }
 
         $arr[$pos] = $value;
-
         return $arr;
     }
 

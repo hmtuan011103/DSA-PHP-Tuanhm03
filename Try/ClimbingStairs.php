@@ -27,7 +27,7 @@ class ClimbingStairs {
            return $fn2;
        }
 
-       $fn3 = '';
+       $fn3 = null;
 
        for ($i = 3; $i <= $n; $i++) {
            $fn3 = $fn1 + $fn2;

@@ -2,15 +2,20 @@
 
 class InsertElement {
 
-    public function insertElement(array $arr, int $pos, $value): array
+    public function insertElement(array $arr, int $pos, $value)
     {
         $n = sizeof($arr);
+
+        if ($pos < 0 || $pos >= $n) {
+            return -1;
+        }
 
         for ($i = $n - 1; $i >= $pos; $i--) {
             $arr[$i + 1] = $arr[$i];
         }
 
         $arr[$pos] = $value;
+
         return $arr;
     }
 

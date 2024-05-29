@@ -25,13 +25,13 @@ class RotateArray {
             $arr[$i] = $temp[$i];
         }
 
-        return $arr;
+        return $temp;
     }
 
 }
 
 $arr = [1,2,3,4,5];
-$k = 2;
+$k = 15;
 $rotateArray = new RotateArray();
 print_r($rotateArray->rotateArray($arr, $k));
 

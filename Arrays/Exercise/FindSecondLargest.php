@@ -12,6 +12,9 @@ class FindSecondLargest {
 
         $first = $second = $arr[0];
 
+        // 1,3,4,5,0,2
+        // 1 3 ,7, 4
+
         for ($i = 1; $i < $n; $i++) {
             if ($arr[$i] > $first) {
                 $second = $first;

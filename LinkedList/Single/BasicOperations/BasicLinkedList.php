@@ -1,7 +1,8 @@
 <?php
 
-require '../Node.php';
 use LinkedList\Single\Node;
+
+require '../Node.php';
 
 class BasicLinkedList
 {
@@ -27,27 +28,49 @@ class BasicLinkedList
         }
     }
 
+    /**
+     * @return Node|null
+     */
+    public function deleteDuplicates(): ?Node
+    {
+        $current = $this->head->next;
+        $prev    = $this->head;
+
+        while ($current !== null) {
+            if ($prev->data === $current->data) {
+                $temp       = $current->next;
+                $prev->next = $temp;
+                $current    = $temp;
+            } else {
+                $prev    = $current;
+                $current = $current->next;
+            }
+
+        }
+        return $this->head;
+    }
+
     public function traverse(): void
     {
         $current = $this->head;
 
-        while ($current !== null)
-        {
-            echo $current->data . " ";
-
+        while ($current !== null) {
+            echo $current->data . ' ';
             $current = $current->next;
         }
-
-        echo "\nEnd";
     }
 }
 
 $basicLinkedList = new BasicLinkedList();
 
 $basicLinkedList->insert(1);
+$basicLinkedList->insert(1);
 $basicLinkedList->insert(2);
 $basicLinkedList->insert(3);
+$basicLinkedList->insert(3);
 
+$newLinkedList = $basicLinkedList->deleteDuplicates();
+print_r($newLinkedList);
 $basicLinkedList->traverse();
 
 

@@ -83,7 +83,7 @@ class BasicLinkedList
         return 1;
     }
 
-    public function getNodeByValue($data): Node|int
+    public function getNodeByValue($data): ?Node
     {
         $current = $this->head;
 
@@ -94,7 +94,7 @@ class BasicLinkedList
             $current = $current->next;
         }
 
-        return -1;
+        return null;
     }
 
     public function traverse(): void
@@ -116,7 +116,7 @@ $basicLinkedList->insert(2);
 $basicLinkedList->insert(3);
 $basicLinkedList->insert(3);
 
-//$nodeByValue = $basicLinkedList->getNodeByValue(3);
+$nodeByValue = $basicLinkedList->getNodeByValue(3);
 //$basicLinkedList->insertAfter($nodeByValue, 999);
 
 $newLinkedList = $basicLinkedList->deleteDuplicates();

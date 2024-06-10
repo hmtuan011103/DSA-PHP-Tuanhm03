@@ -106,32 +106,43 @@ class BasicLinkedList
     }
 
     public function removeElements($head, $val) {
-        if ($head === null) {
-            return null;
-        }
-
-        $head->next = $this->removeElements($head->next, $val);
-
-        if ($head->data === $val) {
-            return $head->next;
-        }
-
-        return $head;
-
-
-//        $dummy = new ListNode(0);
-//        $dummy->next = $head;
-//        $current = $dummy;
-//
-//        while ($current->next !== null) {
-//            if ($current->next->val === $val) {
-//                $current->next = $current->next->next;
-//            } else {
-//                $current = $current->next;
-//            }
+//        if ($head === null) {
+//            return null;
 //        }
 //
-//        return $dummy->next;
+//        $head->next = $this->removeElements($head->next, $val);
+//
+//        if ($head->data === $val) {
+//            return $head->next;
+//        }
+//
+//        return $head;
+
+
+        $dummy = new Node(0);
+        $dummy->next = $head;
+        $current = $dummy;
+
+        while ($dummy->next !== null) {
+            if ($dummy->next->data === $val) {
+                $dummy->next = $dummy->next->next;
+            } else {
+                $dummy = $dummy->next;
+            }
+        }
+
+        return $current->next;
+    }
+
+    public function middleNode($head) {
+        $slow = $head;
+
+        while ($head !== null && $head->next !== null) {
+            $slow = $slow->next;
+            $head = $head->next->next;
+        }
+
+        return $slow;
     }
 
 }
@@ -150,8 +161,12 @@ $basicLinkedList->insert(6);
 $data = $basicLinkedList->head;
 $basicLinkedList->removeElements($data, 6);
 
+//$middleNode = $basicLinkedList->middleNode($data);
+
+//print_r($middleNode);
+
 //$newLinkedList = $basicLinkedList->deleteDuplicates();
-//$basicLinkedList->traverse();
+$basicLinkedList->traverse();
 
 
 

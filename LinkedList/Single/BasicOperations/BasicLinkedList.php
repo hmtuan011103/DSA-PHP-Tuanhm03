@@ -145,28 +145,89 @@ class BasicLinkedList
         return $slow;
     }
 
+//    public function isPalindrome($head) {
+//        $slow = $head;
+//        $fast = $head;
+//
+//        while ($fast !== null) {
+//            $slow = $slow->next;
+//            $fast = $fast->next->next;
+//        }
+//
+//        $secondHalfHead = null;
+//
+//        while ($slow !== null) {
+//            $nextNode = $slow->next;
+//            $slow->next = $secondHalfHead;
+//            $secondHalfHead = $slow;
+//            print_r($secondHalfHead);
+//            die();
+//            $slow = $nextNode;
+//        }
+//
+//        print_r($secondHalfHead);
+//
+//        while ($secondHalfHead !== null) {
+//            if ($head->data !== $secondHalfHead->data) {
+//                return false;
+//            }
+//            $head = $head->next;
+//            $secondHalfHead = $secondHalfHead->next;
+//        }
+//        return true;
+//    }
+
+    public function removeNthNode($nth, $head) {
+        $nodeLength = 0;
+
+        $dummy = new Node(0);
+        $dummy->next = $head;
+        $current = $dummy;
+
+        while ($head !== null) {
+            $nodeLength++;
+            $head = $head->next;
+        }
+
+        $nth = $nodeLength - $nth + 1;
+
+        $flag = 0;
+        while ($current !== null) {
+            $flag++;
+            if ($nth === $flag) {
+                $current->next = $current->next->next;
+            } else {
+                $current = $current->next;
+            }
+        }
+        print_r($dummy->next);
+        return $dummy->next;
+    }
+
 }
 
 $basicLinkedList = new BasicLinkedList();
 
 $basicLinkedList->insert(1);
 $basicLinkedList->insert(2);
-$basicLinkedList->insert(6);
 $basicLinkedList->insert(3);
 $basicLinkedList->insert(4);
 $basicLinkedList->insert(5);
-$basicLinkedList->insert(6);
 
 //$nodeByValue = $basicLinkedList->getNodeByValue(3);
 $data = $basicLinkedList->head;
-$basicLinkedList->removeElements($data, 6);
+$basicLinkedList->removeNthNode(1, $data);
+//$basicLinkedList->removeElements($data, 6);
 
 //$middleNode = $basicLinkedList->middleNode($data);
 
 //print_r($middleNode);
 
+//$basicLinkedList->isPalindrome($data);
+//print_r($basicLinkedList->isPalindrome($data));
+
 //$newLinkedList = $basicLinkedList->deleteDuplicates();
-$basicLinkedList->traverse();
+//$basicLinkedList->traverse();
 
 
 

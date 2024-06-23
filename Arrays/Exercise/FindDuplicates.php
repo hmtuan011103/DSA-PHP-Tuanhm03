@@ -36,6 +36,6 @@ class FindDuplicates {
 
 }
 
-$arr = [1, 2, 3, 4, 3, 2, 1];
+$arr = [4,3,2,7,8,2,2,3,1];
 $findDuplicates = new FindDuplicates();
 print_r($findDuplicates->findDuplicates($arr));

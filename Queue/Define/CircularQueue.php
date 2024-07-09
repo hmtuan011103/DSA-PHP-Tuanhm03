@@ -92,6 +92,12 @@ class CircularQueue {
 
     }  // Output: 2
 
+    try {
+        echo $queue->dequeue() . "\n";
+    } catch (Exception $e) {
+
+    }  // Output: 2
+
 
     try {
         $queue->enqueue(6);
@@ -108,3 +114,5 @@ class CircularQueue {
     } catch (Exception $e) {
         echo $e->getMessage();
     }
+
+    // Chốt lại vể Queue phần này là Circular queue nó tối ưu trong việc quản lý bộ nhớ bằng cách khi một element lấy ra thì những element khác được thêm vào bộ nhớ của cái vừa lấy ra, nhưng không phải là cái vừa thêm vào được thực thi luôn vì nó vào sau cùng. Cứ hiểu First In, First Out là được.

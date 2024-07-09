@@ -1,7 +1,7 @@
 <?php
 class CircularQueue {
 
-    private array $queue;
+    public array $queue;
     private int $size;
     private int $front;
     private int $rear;
@@ -20,7 +20,7 @@ class CircularQueue {
     public function enqueue($item): void
     {
         if (($this->rear + 1) % $this->size === $this->front) {
-            throw new Exception("Queue is full");
+            throw new Exception("Queue is full \n");
         } elseif ($this->front === -1) {
             $this->front = $this->rear = 0;
             $this->queue[$this->rear] = $item;
@@ -35,13 +35,15 @@ class CircularQueue {
      */
     public function dequeue() {
         if ($this->front === -1) {
-            throw new Exception("Queue is empty");
+            throw new Exception("Queue is empty \n");
         } elseif ($this->front === $this->rear) {
             $temp = $this->queue[$this->front];
+            $this->queue[$this->front] = null;
             $this->front = $this->rear = -1;
             return $temp;
         } else {
             $temp = $this->queue[$this->front];
+            $this->queue[$this->front] = null;
             $this->front = ($this->front + 1) % $this->size;
             return $temp;
         }
@@ -58,7 +60,7 @@ class CircularQueue {
     public function peek()
     {
         if ($this->isEmpty()) {
-            throw new Exception("Queue is empty");
+            throw new Exception("Queue is empty \n");
         }
         return $this->queue[$this->front];
     }
@@ -78,7 +80,31 @@ class CircularQueue {
 
 
     try {
-        echo $queue->dequeue();
+        echo $queue->dequeue() . "\n";
     } catch (Exception $e) {
 
     }  // Output: 1
+
+
+    try {
+        echo $queue->dequeue() . "\n";
+    } catch (Exception $e) {
+
+    }  // Output: 2
+
+
+    try {
+        $queue->enqueue(6);
+        $queue->enqueue(7);
+        $queue->enqueue(8);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+
+    print_r($queue->queue);
+
+    try {
+        echo $queue->peek();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }

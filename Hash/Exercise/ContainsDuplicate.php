@@ -1,5 +1,19 @@
 <?php
 
+
+//Description: Given an integer array nums,
+// return true if any value appears at least twice in the array, and return false if every element is distinct.
+//Input:
+//nums = [1,2,3,1]
+//              i
+//Output: True
+
+// min = 1
+// max = 3
+// [1,1,1]
+//  1 2 3
+
+
 function solution1($nums): bool
 {
     $maxValue = max($nums);
@@ -11,10 +25,29 @@ function solution1($nums): bool
         if ($count[$num] > 0) {
             return true;
         }
-        $count[$num]++;
+        $count[1]++;
     }
     return false;
 }
+
+
+
+
+
+
+
+
+
+
+
+//Description: Given an integer array nums,
+// return true if any value appears at least twice in the array, and return false if every element is distinct.
+//Input:
+//nums = [1,2,3,1]
+//Output: True
+
+// hashmap = [1 => true, 2 => true, 3 => true]
+
 
 function solution2($nums): bool
 {
@@ -28,6 +61,8 @@ function solution2($nums): bool
     }
     return false;
 }
+
+
 
 function solution3($nums): bool
 {

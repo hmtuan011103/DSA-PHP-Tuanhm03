@@ -51,5 +51,4 @@ class PriorityQueue {
 
     print_r($queue->queue);
 
-
     // Nó vẫn hoạt động như queue bình thường, nhưng có cái là nó sẽ ưu tiên cái gì chạy trước và cái gì chạy sau (cái ưu tiên này do chúng ta định nghĩa bất kì)

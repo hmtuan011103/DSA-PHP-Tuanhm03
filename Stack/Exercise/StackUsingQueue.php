@@ -29,7 +29,7 @@ class MyStack
         return $res;
     }
 
-    public function top()
+    public function top(): int
     {
         while (count($this->queue1) > 1) {
             $this->queue2[] = array_shift($this->queue1);
@@ -52,6 +52,8 @@ class MyStack
 $stack = new MyStack();
 $stack->push(1);
 $stack->push(2);
+$stack->push(3);
+$stack->push(4);
 
 echo $stack->top() . "\n"; // Output: 2
 echo $stack->pop() . "\n"; // Output: 2

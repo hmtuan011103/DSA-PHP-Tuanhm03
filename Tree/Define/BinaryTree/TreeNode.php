@@ -1,6 +1,6 @@
 <?php
 
-namespace Tree\Define\Binary;
+namespace Tree\Define\BinaryTree;
 
 class TreeNode {
     public int $value;

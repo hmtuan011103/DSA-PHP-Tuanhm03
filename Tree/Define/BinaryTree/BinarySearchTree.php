@@ -1,7 +1,8 @@
 <?php
-require_once "TreeNode.php";
 
-use Tree\Define\Binary\TreeNode;
+namespace Tree\Define\BinaryTree;
+
+require_once "TreeNode.php";
 
 class BinarySearchTree
 {
@@ -60,7 +61,48 @@ class BinarySearchTree
         }
     }
 
-    // Depth-First-Search Traversal (In-order)
+    public function delete($value)
+    {
+        return $this->deleteNode($this->root, $value);
+    }
+
+    private function getSuccessor($curr)
+    {
+        $curr = $curr->right;
+        while ($curr !== null && $curr->left !== null) {
+            $curr = $curr->left;
+        }
+        return $curr;
+    }
+
+    // The trick is to find the inorder successor of the node.
+    // Copy contents of the inorder successor to the node, and delete the inorder successor.
+    private function deleteNode($node, $value)
+    {
+        if ($node === null) {
+            return null;
+        }
+
+        if ($value < $node->value) {
+            $node->left = $this->deleteNode($node->left, $value);
+        } elseif ($value > $node->value) {
+            $node->right = $this->deleteNode($node->right, $value);
+        } else {
+            if ($node->left === null) {
+                return $node->right;
+            }
+            if ($node->right === null) {
+                return $node->left;
+            }
+            $both = $this->getSuccessor($node);
+            $node->value = $both->value;
+            $node->right = $this->deleteNode($node->right, $both->value);
+        }
+
+        return $node;
+    }
+
+    // Depth-First-Search Traversal
     public function dfsTraversal($type = 'inorder')
     {
         return match ($type) {
@@ -122,30 +164,37 @@ class BinarySearchTree
     }
 }
 
-$tree = new BinarySearchTree();
-$tree->insert(10);
-$tree->insert(5);
-$tree->insert(15);
-$tree->insert(3);
-$tree->insert(7);
-$tree->insert(8);
-$tree->insert(15);
+//$tree = new BinarySearchTree();
+//$tree->insert(10);
+//$tree->insert(5);
+//$tree->insert(15);
+//$tree->insert(3);
+//$tree->insert(7);
+//$tree->insert(8);
+//$tree->insert(15);
+//
+//echo "Search 7: " . ($tree->search(7) ? "Found" : "Not Found") . "\n";
+//echo "Search 9: " . ($tree->search(9) ? "Found" : "Not Found") . "\n";
+//
+//echo "DFS Traversal: (Left - Root - Right) \n";
+//print_r($tree->dfsTraversal());
+//
+//echo "DFS Traversal: (Root - Left - Right) \n";
+//print_r($tree->dfsTraversal('preorder'));
+//
+//echo "DFS Traversal: (Left - Right - Root) \n";
+//print_r($tree->dfsTraversal('postorder'));
+//
+//echo "BFS Traversal:  \n";
+//print_r($tree->bfsTraversal());
+//
+//echo "Delete Node: \n";
+//print_r($tree->delete(5));
+//
+//echo "DFS Traversal After Delete Node: (Left - Root - Right) \n";
+//print_r($tree->dfsTraversal());
 
-print_r($tree);
-echo "Search 7: " . ($tree->search(7) ? "Found" : "Not Found") . "\n";
-echo "Search 9: " . ($tree->search(9) ? "Found" : "Not Found") . "\n";
 
-echo "DFS Traversal: (Left - Root - Right) \n";
-print_r($tree->dfsTraversal());
-
-echo "DFS Traversal: (Root - Left - Right) \n";
-print_r($tree->dfsTraversal('preorder'));
-
-echo "DFS Traversal: (Left - Right - Root) \n";
-print_r($tree->dfsTraversal('postorder'));
-
-echo "BFS Traversal:  \n";
-print_r($tree->bfsTraversal());
 
 //           10
 //        /      \

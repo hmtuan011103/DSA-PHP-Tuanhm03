@@ -5,9 +5,8 @@ require_once "NaryNode.php";
 
 use SplQueue;
 
-
 class NaryTree {
-    private mixed $root;
+    public mixed $root;
 
     public function __construct() {
         $this->root = null;
@@ -38,7 +37,7 @@ class NaryTree {
     }
 
     private function findRecursive($node, $value) {
-        if ($node->value == $value) {
+        if ($node->value === $value) {
             return $node;
         }
         foreach ($node->children as $child) {
@@ -74,8 +73,8 @@ class NaryTree {
             return 0;
         }
         $maxChildDepth = 0;
-        foreach ($node->children as $child) {
-            $childDepth = $this->getDepthRecursive($child);
+        foreach ($node->children as $childNode) {
+            $childDepth    = $this->getDepthRecursive($childNode);
             $maxChildDepth = max($maxChildDepth, $childDepth);
         }
         return 1 + $maxChildDepth;
@@ -192,12 +191,18 @@ class NaryTree {
 
 // Sử dụng cây N-ary
 $tree = new NaryTree();
+
+
 $tree->insert(1);  // Root
 $tree->insert(2, 1);
 $tree->insert(3, 1);
 $tree->insert(4, 2);
 $tree->insert(5, 2);
 $tree->insert(6, 3);
+$tree->insert(78, 5);
+$tree->insert(78, 1);
+
+print_r($tree);
 
 echo "Cấu trúc cây:\n";
 $tree->printTree();
